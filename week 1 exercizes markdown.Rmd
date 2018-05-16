@@ -41,21 +41,26 @@ with(mtcars,table(am, cyl))
 
 with(mtcars,table(vs, cyl))
 
+```
+
+
+Histograms of wt, mpg, qsec, and hp. 
+```{r, histograms}
 #histogram of wt
 ggplot(mtcars, aes(x = wt)) +
   geom_histogram(binwidth = .25)
 
 #histogram of mpg
 ggplot(mtcars, aes(x = mpg)) +
-  geom_histogram(binwidth = .25)
+  geom_histogram(binwidth = 3)
 
 #histogram of qsec
 ggplot(mtcars, aes(x = qsec)) +
-  geom_histogram(binwidth = .25)
+  geom_histogram(binwidth = 0.5)
 
 #histogram of hp
 ggplot(mtcars, aes(x = hp)) +
-  geom_histogram(binwidth = .25)
+  geom_histogram(binwidth = 25)
 
 ```
 
