@@ -2,7 +2,7 @@
 title: "Week 1 Exercizes"
 author: "Luke Tuttle"
 date: "5/16/18"
-output: pdf_notebook
+output: "pdf_document"
 ---
 
 This is an R Markdown of the exercizes assigned for week 1 of R training at Sorneson Impact Center. 
@@ -17,6 +17,35 @@ library(readxl)
 library(lubridate)
 
 ```
+
+Exercize Assignment
++ Create table of the number of cars by gear
++ Create table of the number of cars by carb
++ Create a table of vs
++ Create a table of am
++ Create a table of cyl by gear
++ Create a table of cyl by am
++ Create a table of cyl by vs
++ Create a histogram of wt
++ using geom_histogram()
++ Don’t need to count, just pass the dataset to
+  ggplot
++ Don’t specify a y, only the x
++ Create a histogram of mpg
++ Create a histogram of qsec
++ Create a histogram of hp
++ Create a table of mean mpg by cyl
++ Graph mean mpg by cyl
++ x=cyl, y=meanmpg
++ Create a table of mean wt by cyl
++ Graph mean wt by cyl
++ x=cyl, y=meanwt
++ Create a table of mean hp by cyl
++ Graph mean hp by cyl
++ x=cyl, y=meanhp
++ Do any other exploratory analysis that
+interests you
+
 
 Tables 1-7
 ```{r, tables}
@@ -64,10 +93,50 @@ ggplot(mtcars, aes(x = hp)) +
 
 ```
 
+Mean mpg by cylinder 
+```{r, mean_mpg_by_cyl}
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+mtcars %>%
+  group_by(cyl) %>% 
+  summarize(meanmpg = mean(mpg))
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+#graph
+mtcars %>%
+  group_by(cyl) %>% 
+  summarize(meanmpg = mean(mpg)) %>% 
+ggplot(aes(x = cyl, y = meanmpg)) + 
+    geom_col()
+
+```
+
+Mean weight by cylinder
+```{r, wt_by_cyl}
+
+wt_cyl <- mtcars %>%
+  group_by(cyl) %>% 
+  summarize(meanwt = mean(wt))
+
+ggplot(wt_cyl, aes(x = cyl, y = meanwt)) +
+  geom_col(width = 1)
+
+```
+
+Mean horsepower by cylinder
+```{r, hp_by_cyl}
+
+meanhp_cyl <- mtcars %>% 
+  group_by(cyl) %>% 
+  summarize(meanhp = mean(hp))
+
+ggplot(meanhp_cyl, aes(x = cyl, y = meanhp)) +
+  geom_col(width = 1)
+```
+
+
+
+
+
+ 
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
