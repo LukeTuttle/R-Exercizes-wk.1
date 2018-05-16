@@ -1,0 +1,68 @@
+---
+title: "Week 1 Exercizes"
+author: "Luke Tuttle"
+date: "5/16/18"
+output: pdf_notebook
+---
+
+This is an R Markdown of the exercizes assigned for week 1 of R training at Sorneson Impact Center. 
+
+
+```{r, setup, include=FALSE}
+
+library(tidyverse)
+library(knitr)
+library(forcats)
+library(readxl)
+library(lubridate)
+
+```
+
+Tables 1-7
+```{r, tables}
+
+
+
+mtcars %>% 
+  group_by(gear) %>% 
+  summarize(n = n())
+
+mtcars %>% 
+  group_by(carb) %>% 
+  summarize(n = n())
+
+#Create a table of vs
+#Create a table of am
+
+#tables of cyl by "x" 
+with(mtcars,table(gear, cyl))
+
+with(mtcars,table(am, cyl))
+
+with(mtcars,table(vs, cyl))
+
+#histogram of wt
+ggplot(mtcars, aes(x = wt)) +
+  geom_histogram(binwidth = .25)
+
+#histogram of mpg
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(binwidth = .25)
+
+#histogram of qsec
+ggplot(mtcars, aes(x = qsec)) +
+  geom_histogram(binwidth = .25)
+
+#histogram of hp
+ggplot(mtcars, aes(x = hp)) +
+  geom_histogram(binwidth = .25)
+
+```
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
